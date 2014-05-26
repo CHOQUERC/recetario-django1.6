@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.shortcuts import render, render_to_response, get_object_or_404
 # importar los modelos
 from principal.models import Receta, Comentario
@@ -22,3 +23,19 @@ def Sobre(request):
 def Inicio(request):
     recetas = Receta.objects.all()
     return render_to_response('principal/inicio.html', {'recetas': recetas}, context_instance=RequestContext(request))
+
+
+
+# metodo que retorna todos los usuarios del sistema, las recetas registradas
+
+def Usuarios(request):
+    usuarios = User.objects.all()
+    recetas = Receta.objects.all()
+    titulo = "Página de usuarios y Recetas Registradas"
+
+    return render_to_response('principal/usuarios.html',
+                              {'usuarios': usuarios,
+                               'recetas': recetas,
+                               'titulo':titulo},
+                              context_instance=RequestContext(request))
+
